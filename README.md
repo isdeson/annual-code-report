@@ -1,6 +1,12 @@
-# 年度代码报告
+<div  align="center">    
+    <img src="./images/logo.png" width ="15%"  align="center"/>
+</div>
+
+# 🚀 年度代码报告生成器
+![](https://img.shields.io/badge/language-node-js.svg) 
 
 基于你的本地Git记录生成你的年度专属代码报告，纯前端，纯本地，无任何数据安全风险
+
 
 Tips：
   1. 使用前请先确保你的电脑上已经安装了>=18版本的Node.js
