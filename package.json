@@ -1,0 +1,16 @@
+{
+  "name": "annual-code-report",
+  "version": "1.0.0",
+  "description": "根据你的Git记录，生成你的专属代码年度报告",
+  "scripts": {
+    "start": "node bin/cli.js"
+  },
+  "dependencies": {
+    "axios": "^1.6.0",
+    "dayjs": "^1.11.10",
+    "fs-extra": "^11.2.0",
+    "inquirer": "^9.2.12",
+    "open": "^11.0.0",
+    "simple-git": "^3.22.0"
+  }
+}
