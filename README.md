@@ -1,6 +1,10 @@
-# Git 年度报告生成器
+# 年度代码报告
 
-扫描本地 Git 仓库，生成个人年度代码贡献报告。自动过滤指定作者的提交，支持多仓库递归扫描。
+基于你的本地Git记录生成你的年度专属代码报告，纯前端，纯本地，无任何数据安全风险
+
+Tips：
+  1. 使用前请先确保你的电脑上已经安装了>=18版本的Node.js
+  2. 如果你参与了多个项目的开发工作，在输入项目根目录的时候请选择他们的共同的父级目录
 
 ## 安装
 
@@ -15,9 +19,36 @@ npm start
 ```
 
 启动后会提示输入：
-- Git 用户名/邮箱（自动从 git config 获取默认值）
-- 仓库根目录路径
-- 统计开始/结束日期
+- Git 用户名/邮箱（自动从 git config 获取，如果只有一个默认选用，多个请手动选择需要统计的 Git 用户）:
+- 你的 Git 仓库根目录路径（如有多个仓库请选择共同的父级目录）:
+- 统计开始日期 (YYYY-MM-DD):
+- 统计结束日期 (YYYY-MM-DD):
+- 统计完成之后会自动跳转年度代码报告H5页面，也可前往项目根目录/report.json文件中查看报告统计数据
+
+```bash
+🚀 年度代码报告生成器
+
+👤 使用 Git 用户: zhangsan <zhangsan@example.com>
+
+? 你的 Git 仓库根目录路径（如有多个仓库请选择共同的父级目录）: /Users/zhangsan/workspace
+? 统计开始日期 (YYYY-MM-DD): 2025-01-01
+? 统计结束日期 (YYYY-MM-DD): 2026-12-31
+
+🔍 正在扫描 Git 仓库...
+📁 扫描完成，共找到 5 个仓库，开始分析...
+
+🔍 分析中: Design/ant-design-mobile
+🔍 分析中: Design/nutui-react
+🔍 分析中: hello-other/haha-code
+🔍 分析中: hello-other/hello-dumi
+🔍 分析中: hello-other/other
+
+📊 数据压缩完成: 5992 → 3534 字符
+
+🌍 正在打开年度报告页面...
+
+🎉 报告生成完成，请前往 report.json 查看统计数据
+```
 
 ## 输出 JSON 字段说明
 
@@ -29,7 +60,10 @@ npm start
     "since": "2025-01-01",                       // 统计开始日期
     "until": "2025-12-31"                        // 统计结束日期
   },
-  "author": "zhangsan",                          // 被统计的 Git 作者
+  "author": {                                  // 被统计的 Git 作者
+    "name": "zhangsan",
+    "email": "zhangsan@example.com"
+  },
 
   // ==================== 汇总数据 ====================
   "summary": {
@@ -179,7 +213,7 @@ npm start
 
     // ---------- 协作统计 ----------
     "topCollaborators": [                        // 协作者 Top10
-      { "name": "lisi <lisi@example.com>", "commits": 200 }
+      { "name": "lisi", "email": "lisi@example.com", "commits": 200 }
     ],
     "topCollaboratorsTip": "👥 团队核心",         // 协作者提示文案
     
