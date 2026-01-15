@@ -2,6 +2,9 @@
   "name": "annual-code-report",
   "version": "1.0.0",
   "description": "根据你的Git记录，生成你的专属代码年度报告",
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
     "start": "node bin/cli.js"
   },
