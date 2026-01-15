@@ -247,3 +247,40 @@ npm start
 ## License
 
 MIT
+
+---
+
+## H5 端解压数据示例
+
+生成的链接使用 pako 压缩 + base64url 编码：
+
+```bash
+npm install pako
+```
+
+```javascript
+import pako from 'pako';
+
+// 从 URL 获取压缩数据
+const urlParams = new URLSearchParams(window.location.hash.split('?')[1]);
+const base64url = urlParams.get('d');
+
+// base64url 解码 + 解压
+function decompressData(base64urlStr) {
+  // 还原 base64url 为标准 base64
+  let base64 = base64urlStr.replace(/-/g, '+').replace(/_/g, '/');
+  // 补齐 padding
+  while (base64.length % 4) base64 += '=';
+  
+  const binaryStr = atob(base64);
+  const bytes = new Uint8Array(binaryStr.length);
+  for (let i = 0; i < binaryStr.length; i++) {
+    bytes[i] = binaryStr.charCodeAt(i);
+  }
+  const decompressed = pako.inflate(bytes, { to: 'string' });
+  return JSON.parse(decompressed);
+}
+
+const reportData = decompressData(base64url);
+console.log(reportData);
+```
